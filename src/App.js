@@ -13,6 +13,7 @@ import Header from "./components/Header";
 import MenuCard from "./components/MenuCard";
 import MenuContainer from "./components/MenuContainer";
 import SubMenuContainer from "./components/SubMenuContainer";
+import { MenuItems, Items } from "./components/Data";
 
 function App() {
   useEffect(() => {
@@ -41,7 +42,16 @@ function App() {
               <SubMenuContainer name={"Menu Category"} />
             </div>
             <div className="rowContainer">
-              <MenuCard imgSrc={""} name={"Burger"} />
+              {MenuItems &&
+                MenuItems.map((data) => (
+                  <div key={data.id}>
+                    <MenuCard
+                      imgSrc={data.imgSrc}
+                      name={data.name}
+                      isActive={data.id === 1 ? "true" : false}
+                    />
+                  </div>
+                ))}
             </div>
             <div className="dishitemContainer"></div>
           </div>
