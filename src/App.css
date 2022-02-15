@@ -141,6 +141,58 @@ main {
   position: relative;
   margin-top: 60px;
 }
+.bottomMenu {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 60px;
+  background: #d5d5d5;
+  border-radius: 25px 25px 0 0;
+  z-index: 101;
+}
+.bottomMenu ul {
+  display: flex;
+}
+.bottomMenu ul li {
+  position: relative;
+  width: 60px;
+  height: 60px;
+  z-index: 1;
+}
+.bottomMenu ul li a {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  flex-direction: column;
+  font-weight: 500;
+}
+
+.bottomMenu ul li a .icon {
+  position: relative;
+  display: block;
+  line-height: 70px;
+  text-align: center;
+  transition: 0.5s;
+  left: 5px;
+}
+.bottomMenu ul li a .icon .MuiSvgIcon-root {
+  font-size: 26px;
+  color: #373848;
+}
+.bottomMenu ul li.active a .icon {
+  transform: translateY(-26px);
+}
+
+.bottomMenu ul li.active a .icon .MuiSvgIcon-root {
+  color: #faf9fb;
+  transition: 0.5s;
+}
 
 .leftMenu {
   position: fixed;
@@ -210,6 +262,7 @@ main {
   border-radius: 50%;
   border: 6px solid #faf9fb;
   transition: 0.5s;
+  overflow: hidden;
 }
 
 .indicator::before {
@@ -236,27 +289,27 @@ main {
   box-shadow: 0px -10px 0 0 #faf9fb;
 }
 
-.leftMenu ul li:nth-child(1).active ~ .indicator {
+.bottomMenu ul li:nth-child(1).active ~ .indicator {
   transform: translateX(calc(60px * 0));
 }
 
-.leftMenu ul li:nth-child(2).active ~ .indicator {
+.bottomMenu ul li:nth-child(2).active ~ .indicator {
   transform: translateX(calc(60px * 1));
 }
 
-.leftMenu ul li:nth-child(3).active ~ .indicator {
+.bottomMenu ul li:nth-child(3).active ~ .indicator {
   transform: translateX(calc(60px * 2));
 }
 
-.leftMenu ul li:nth-child(4).active ~ .indicator {
+.bottomMenu ul li:nth-child(4).active ~ .indicator {
   transform: translateX(calc(60px * 3));
 }
 
-.leftMenu ul li:nth-child(5).active ~ .indicator {
+.bottomMenu ul li:nth-child(5).active ~ .indicator {
   transform: translateX(calc(60px * 4));
 }
 
-.leftMenu ul li:nth-child(6).active ~ .indicator {
+.bottomMenu ul li:nth-child(6).active ~ .indicator {
   transform: translateX(calc(60px * 5));
 }
 
@@ -342,7 +395,7 @@ main {
 .subMenuContianer,
 .viewAll {
   display: flex;
-  justify-content: space-between;
+  justify-content: space-around;
   align-items: center;
 }
 
