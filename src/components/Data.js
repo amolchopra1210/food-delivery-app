@@ -50,7 +50,7 @@ const MenuItems = [
       imgSrc:
         "https://firebasestorage.googleapis.com/v0/b/food-delivery-37c59.appspot.com/o/Images%2Fburger1.png?alt=media&token=319dfbe9-462b-46ea-8f38-6ca7a20319e0",
       name: "Burger Bistro",
-      ratings: 5,
+      ratings: 1,
       price: "7.5",
     },
     {

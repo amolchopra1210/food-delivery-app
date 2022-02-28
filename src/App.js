@@ -6,7 +6,7 @@ import {
   Settings,
   SummarizeRounded,
 } from "@mui/icons-material";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import "./App.css";
 import BannerName from "./components/BannerName";
 import Header from "./components/Header";
@@ -14,8 +14,14 @@ import MenuCard from "./components/MenuCard";
 import MenuContainer from "./components/MenuContainer";
 import SubMenuContainer from "./components/SubMenuContainer";
 import { MenuItems, Items } from "./components/Data";
+import Itemcard from "./components/ItemCard";
 
 function App() {
+  //main dish state
+  const [isMainData, setMainData] = useState(
+    Items.filter((el) => el.itemId === "buger01")
+  );
+
   useEffect(() => {
     const menuLi = document.querySelectorAll("#menu li");
     function setMenuActive() {
@@ -23,7 +29,24 @@ function App() {
       this.classList.add("active");
     }
     menuLi.forEach((n) => n.addEventListener("click", setMenuActive));
-  }, []);
+
+    //menu cart toggle
+
+    function setMenuCardActive() {
+      menuCards.forEach((item) => item.classList.remove("active"));
+      this.classList.add("active");
+    }
+    const menuCards = document
+      .querySelector(".rowContainer")
+      .querySelectorAll(".rowMenuCard");
+    menuCards.forEach((n) => n.addEventListener("click", setMenuCardActive));
+  }, [isMainData]);
+
+  //setMaindata on filter
+
+  const setData = (itemId) =>
+    setMainData(Items.filter((el) => el.itemId === itemId));
+
   return (
     <div className="App">
       <Header />
@@ -44,7 +67,7 @@ function App() {
             <div className="rowContainer">
               {MenuItems &&
                 MenuItems.map((data) => (
-                  <div key={data.id}>
+                  <div key={data.id} onClick={() => setData(data.itemId)}>
                     <MenuCard
                       imgSrc={data.imgSrc}
                       name={data.name}
@@ -53,7 +76,19 @@ function App() {
                   </div>
                 ))}
             </div>
-            <div className="dishitemContainer"></div>
+            <div className="dishItemContainer">
+              {isMainData &&
+                isMainData.map((data) => (
+                  <Itemcard
+                    itemId={data.id}
+                    key={data.id}
+                    imgSrc={data.imgSrc}
+                    name={data.name}
+                    ratings={data.ratings}
+                    price={data.price}
+                  />
+                ))}
+            </div>
           </div>
         </div>
         <div className="rightMenu"></div>

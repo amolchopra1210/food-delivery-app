@@ -570,9 +570,9 @@ main {
 
 .itemCard .imgBox {
   position: absolute;
-  top: -10px;
-  width: 100px;
-  height: 100px;
+  top: -21px;
+  width: 70px;
+  height: 70px;
   border-radius: 100vw;
   display: flex;
   justify-content: center;
