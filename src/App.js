@@ -15,6 +15,8 @@ import MenuContainer from "./components/MenuContainer";
 import SubMenuContainer from "./components/SubMenuContainer";
 import { MenuItems, Items } from "./components/Data";
 import Itemcard from "./components/ItemCard";
+import Debitcard from "./components/DebitCard";
+import Cartitem from "./components/CartItem";
 
 function App() {
   //main dish state
@@ -91,7 +93,30 @@ function App() {
             </div>
           </div>
         </div>
-        <div className="rightMenu"></div>
+        <div className="rightMenu">
+          <div className="debitCardContainer">
+            <div className="debitCard">
+              <Debitcard />
+            </div>
+          </div>
+          <div className="cartCheckOutcontainer">
+            <div className="cartContainer">
+              <SubMenuContainer name={"Cart Items"} />
+              <div className="cartItems">
+                <Cartitem
+                  name={"Burger Bristo"}
+                  imgSrc={""}
+                  qty={"4"}
+                  price={"7.95"}
+                />
+              </div>
+            </div>
+            <div className = "totalSection">
+              <h3>Total</h3>
+              <p><span>$45.0</span></p>
+            </div>
+          </div>
+        </div>
       </main>
       <div className="bottomMenu">
         <ul id="menu">

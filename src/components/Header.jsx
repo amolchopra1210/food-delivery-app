@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import {} from "@mui/material";
 import {
   BarChart,
@@ -6,6 +6,12 @@ import {
   ShoppingCartRounded,
 } from "@mui/icons-material";
 function Header() {
+  useEffect(() => {
+    const toggleMenu = document.querySelector(".toggleMenu");
+    toggleMenu.addEventListener("click", () => {
+      document.querySelector(".rightMenu").classList.toggle("active");
+    });
+  }, []);
   return (
     <header>
       <img
