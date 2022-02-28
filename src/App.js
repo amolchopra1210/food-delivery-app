@@ -17,12 +17,15 @@ import { MenuItems, Items } from "./components/Data";
 import Itemcard from "./components/ItemCard";
 import Debitcard from "./components/DebitCard";
 import Cartitem from "./components/CartItem";
+import { useStateValue } from "./components/StateProvider";
 
 function App() {
   //main dish state
   const [isMainData, setMainData] = useState(
     Items.filter((el) => el.itemId === "buger01")
   );
+
+  const [{ cart }, dispatch] = useStateValue();
 
   useEffect(() => {
     const menuLi = document.querySelectorAll("#menu li");
@@ -99,23 +102,34 @@ function App() {
               <Debitcard />
             </div>
           </div>
-          <div className="cartCheckOutcontainer">
-            <div className="cartContainer">
-              <SubMenuContainer name={"Cart Items"} />
-              <div className="cartItems">
-                <Cartitem
-                  name={"Burger Bristo"}
-                  imgSrc={""}
-                  qty={"4"}
-                  price={"7.95"}
-                />
+
+          {!cart ? (
+            <div></div>
+          ) : (
+            <div className="cartCheckOutcontainer">
+              <div className="cartContainer">
+                <SubMenuContainer name={"Cart Items"} />
+                <div className="cartItems">
+                  {cart &&
+                    cart.map((data) => (
+                      <Cartitem
+                        key={data.id}
+                        itemId={data.id}
+                        name={data.name}
+                        imgSrc={data.imgSrc}
+                        price={data.price}
+                      />
+                    ))}
+                </div>
+              </div>
+              <div className="totalSection">
+                <h3>Total</h3>
+                <p>
+                  <span>$45.0</span>
+                </p>
               </div>
             </div>
-            <div className = "totalSection">
-              <h3>Total</h3>
-              <p><span>$45.0</span></p>
-            </div>
-          </div>
+          )}
         </div>
       </main>
       <div className="bottomMenu">
