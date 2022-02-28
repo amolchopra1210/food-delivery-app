@@ -104,7 +104,7 @@ function App() {
           </div>
 
           {!cart ? (
-            <div></div>
+            <div>Cart Items</div>
           ) : (
             <div className="cartCheckOutcontainer">
               <div className="cartContainer">

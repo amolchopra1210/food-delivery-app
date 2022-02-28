@@ -1,21 +1,29 @@
 import { AddRounded, RemoveRounded } from "@mui/icons-material";
 import React, { useState, useEffect } from "react";
+import { actionType } from "./reducer";
 import { useStateValue } from "./StateProvider";
 let cartItems = [];
 
 export default function Cartitem({ name, imgSrc, price, itemId }) {
   const [qty, setQty] = useState(1);
   const [{ cart }, dispatch] = useStateValue();
+  const [itemPrice, setItemPrice] = useState(parseInt(qty) * parseFloat(price));
 
   useEffect(() => {
     cartItems = cart;
-  }, [cart]);
+    setItemPrice(parseInt(qty) * parseFloat(price));
+  }, [qty]);
 
   const updateQuantity = (action, id) => {
     if (action === "add") {
       setQty(qty + 1);
     } else {
-      if (qty == 1) {
+      if (qty === 1) {
+        cartItems.pop(id);
+        dispatch({
+          type: actionType.SET_CART,
+          cart: cartItems,
+        });
       }
       setQty(qty - 1);
     }
@@ -43,7 +51,7 @@ export default function Cartitem({ name, imgSrc, price, itemId }) {
       </div>
       <div className="itemPrice">
         <span className="dollarSign">$</span>
-        <span className="itemPriceValue">{price}</span>
+        <span className="itemPriceValue">{itemPrice}</span>
       </div>
     </div>
   );
