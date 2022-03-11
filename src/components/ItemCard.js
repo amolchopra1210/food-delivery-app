@@ -24,7 +24,7 @@ export default function Itemcard({ imgSrc, ratings, price, name, itemId }) {
         cart: cartData,
       });
     }
-  }, [isCart]);
+  }, [dispatch, isCart]);
   return (
     <div className="itemCard" id={itemId}>
       <div
