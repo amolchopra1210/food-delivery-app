@@ -10,7 +10,7 @@ export default function Itemcard({ imgSrc, ratings, price, name, itemId }) {
   const [isFavorite, setFavorite] = useState(false);
   const [currentValue, setCurrentValue] = useState(Math.floor(ratings));
   const [isCart, setCart] = useState(null);
-  const [{}, dispatch] = useStateValue();
+  const [, dispatch] = useStateValue();
 
   const handleClick = (value) => {
     setCurrentValue(value);

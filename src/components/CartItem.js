@@ -12,7 +12,7 @@ export default function Cartitem({ name, imgSrc, price, itemId }) {
   useEffect(() => {
     cartItems = cart;
     setItemPrice(parseInt(qty) * parseFloat(price));
-  }, [qty]);
+  }, [cart, price, qty]);
 
   const updateQuantity = (action, id) => {
     if (action === "add") {
